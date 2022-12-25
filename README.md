@@ -1,2 +1,2 @@
-- Here I have tried to solve some database related problems using the SQL language.
+- Here I have tried to solve some data retrieval problems using the SQL language.
 - Some of these problems are taken from - https://leetcode.com
