@@ -1,10 +1,11 @@
 /*
 This sql file contains creation and manipulation of a few databases to handle specific
-situations and usecases. The focus of this file is to explore the DDL commands with a few
-other sql concepts to 
+situations and usecases. The focus of this file is to explore the DDL commands.
 */
 
-USE SQL_Fundamentals;
+CREATE DATABASE DDL_Commands;
+USE DDL_Commands;
+
 
 -- >>>>> QUERY PS 1 >>>>> -- 
 /* 
@@ -44,6 +45,7 @@ It must be between 10.0 and 20.0 (inclusive), and it cannot be null.
 The BirthDate column is a date that cannot be null and must be on or after January 1, 2015.
 */
 
+
 -- >>>>> QUERY PS 2 >>>>> --
 /*
 Insert the following data into the Horse table:
@@ -54,12 +56,14 @@ Independence		  Holsteiner		16.0			2017-03-13
 Ellie				  Saddlebred		15.0			2016-12-22
 NULL				 Egyptian Arab		14.9			2019-10-12
 */
+
 INSERT INTO Horse (RegisteredName, Breed, Height, BirthDate)
 VALUES ('Babe', 'Quarter Horse', 15.3, '2015-02-10'),
     ('Independence', 'Holsteiner', 16.0, '2017-03-13'),
     ('Ellie', 'Saddlebred', 15.0, '2016-12-22'),
     (NULL, 'Egyptian Arab', 14.9, '2019-10-12');
-    
+  
+  
 -- >>>>> QUERY PS 3 >>>>> --
 /*
 Make the following updates:
@@ -78,20 +82,20 @@ WHERE ID = 4;
 UPDATE Horse SET Breed = NULL
 WHERE BirthDate >= CAST('2016-12-22' as Date);
 
+
 -- >>>>> QUERY PS 4 >>>>> --
 /*Delete the following rows:
 
 Horse with ID 5.
 All horses with breed Holsteiner or Paint.
-All horses born before March 13, 2013.
-
-*/
+All horses born before March 13, 2013. */
 
 DELETE FROM Horse WHERE ID = 5;
 
 DELETE FROM Horse WHERE Breed = 'Holsteiner' or Breed = 'Paint';
 
 DELETE FROM Horse WHERE BirthDate < CAST('2013-03-13' as Date);
+
 
 -- >>>>> QUERY PS 5 >>>>> --
 /*
@@ -104,6 +108,8 @@ FROM Horse
 WHERE Height BETWEEN 15.0 AND 16.0 OR
 BirthDate >= CAST('2020-01-01' as DATE);
 
+
+-- >>>>> QUERY PS 6 >>>>> --
 /*
 The Movie table has the following columns:
 
@@ -125,6 +131,7 @@ ALTER TABLE Movie CHANGE COLUMN Year ReleaseYear DATE;
 ALTER TABLE Movie MODIFY COLUMN ReleaseYear SMALLINT;
 
 
+-- >>>>> QUERY PS 7 >>>>> --
 /*
 Two tables are created:
 Horse with columns:
@@ -144,7 +151,6 @@ If a row is deleted from Horse, the rows with the same horse ID should be delete
 If a row is deleted from Student, the same student IDs should be set to NULL in LessonSchedule automatically.
 */
 
-
 CREATE TABLE LessonSchedule
 (
 HorseID smallint UNSIGNED NOT NULL,
@@ -154,7 +160,9 @@ PRIMARY KEY(HorseID, LessonDateTime),
 FOREIGN KEY (HorseID) REFERENCES Horse(ID) ON DELETE CASCADE,
 FOREIGN KEY (StudentID) REFERENCES Student(ID) ON DELETE SET NULL
 );
--- >>>>> QUERY PS 3 >>>>> --
+
+
+-- >>>>> QUERY PS 8 >>>>> --
 /*
 Create a Student table with the following column names, data types, and constraints:
 ID - integer with range 0 to 65 thousand, auto increment, primary key
@@ -167,6 +175,7 @@ Zip - integer with range 0 to 16 million, not NULL
 Phone - fixed-length string of 10 chars, not NULL
 Email - variable-length string with max 30 chars, must be unique
 */
+
 DROP TABLE IF EXISTS Student;
 CREATE TABLE Student
 (
@@ -189,8 +198,3 @@ EXPLANATION:
 >> Since the range for minimum and maximum UNSIGNED values equals 0 and 16777215 respectively, 
 it suits to be the perfect data type for our Zip column.
 */
-
-
--- >>>>> QUERY PS 4 >>>>> --
-
-
