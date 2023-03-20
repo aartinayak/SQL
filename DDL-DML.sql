@@ -124,7 +124,7 @@ ALTER TABLE Movie DROP COLUMN Genre;
 ALTER TABLE Movie CHANGE COLUMN Year ReleaseYear DATE;
 ALTER TABLE Movie MODIFY COLUMN ReleaseYear SMALLINT;
 
-
+-- >>>>> QUERY PS 6 >>>>> --
 /*
 Two tables are created:
 Horse with columns:
@@ -154,7 +154,9 @@ PRIMARY KEY(HorseID, LessonDateTime),
 FOREIGN KEY (HorseID) REFERENCES Horse(ID) ON DELETE CASCADE,
 FOREIGN KEY (StudentID) REFERENCES Student(ID) ON DELETE SET NULL
 );
--- >>>>> QUERY PS 3 >>>>> --
+
+
+-- >>>>> QUERY PS 7 >>>>> --
 /*
 Create a Student table with the following column names, data types, and constraints:
 ID - integer with range 0 to 65 thousand, auto increment, primary key
@@ -189,8 +191,3 @@ EXPLANATION:
 >> Since the range for minimum and maximum UNSIGNED values equals 0 and 16777215 respectively, 
 it suits to be the perfect data type for our Zip column.
 */
-
-
--- >>>>> QUERY PS 4 >>>>> --
-
-
